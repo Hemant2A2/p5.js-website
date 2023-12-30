@@ -1,0 +1,186 @@
+---
+title: learn
+slug: learn/
+---
+
+<div id="learn-page">
+
+  {{> sidebar}}
+
+  <div class="column-span">
+
+    <main >
+
+      <div class="attribution">
+      {{#i18n "curves-description1"}}{{/i18n}}<a href="https://github.com/processing/p5.js/issues">{{#i18n "curves-description2"}}{{/i18n}}</a>
+      {{#i18n "curves-description3"}}{{/i18n}}<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">{{#i18n "curves-description4"}}{{/i18n}}</a>
+
+      </div>
+
+      <h1>{{#i18n "curves-title"}}{{/i18n}}</h1>
+
+      <p>
+      {{#i18n "curves-p1x1"}}{{/i18n}}
+      </p>
+
+      <h2>{{#i18n "curves-arcs-title"}}{{/i18n}}</h2>
+
+      <p>
+      {{#i18n "curves-arcs-p1x1"}}{{/i18n}}
+      </p>
+
+      <p>
+      {{#i18n "curves-arcs-p2x1"}}{{/i18n}}
+      </p>
+
+      <p>
+      {{#i18n "curves-arcs-p3x1"}}{{/i18n}}
+      </p>
+
+      <!-- this script only needs to get added once even if there are multiple widget instances -->
+      <script src="//toolness.github.io/p5.js-widget/p5-widget.js"></script>
+      <script type="text/p5" data-autoplay data-p5-version="{{ version }}">
+        function draw() {
+          createCanvas(150,200);
+          background(150);
+          stroke(0);
+          arc(35, 35, 50, 50, 0, PI / 2.0); // lower quarter circle
+          arc(105, 35, 50, 50, -PI, 0, CHORD);  // upper half of circle
+          arc(175, 35, 50, 50, -PI / 6, PI / 6, PIE); // 60 degrees
+          noFill();
+          arc(105, 105, 100, 50, PI / 2, 3 * PI / 2, OPEN); // 180 degrees
+        }
+      </script>
+
+      <h2>{{#i18n "curves-spline-curves-title"}}{{/i18n}}</h2>
+
+      <p>
+      {{#i18n "curves-spline-curves-p1x1"}}{{/i18n}}
+      </p>
+
+      <p>
+      {{#i18n "curves-spline-curves-p2x1"}}{{/i18n}}
+      </p>
+
+      <p>
+      {{#i18n "curves-spline-curves-p3x1"}}{{/i18n}}
+      </p>
+
+      <p>
+        {{#i18n "curves-spline-curves-p4x1"}}{{/i18n}}
+      </p>
+
+      <p>
+      {{#i18n "curves-spline-curves-p5x1"}}{{/i18n}}
+      </p>
+
+      <!-- iframe for the curve and dragging points -->
+      <iframe src="{{assets}}/learn/curves/curve_ex/embed.html" width="350" height="350">
+      </iframe>
+
+
+      <h2>{{#i18n "curves-continuous-spline-curves-title"}}{{/i18n}}</h2>
+
+      <p>
+      {{#i18n "curves-continuous-spline-curves-p1x1"}}{{/i18n}}
+      </p>
+
+
+      <script type="text/p5" data-autoplay data-p5-version="{{ version }}">
+      let coords = [40, 40, 80, 60, 100, 100, 60, 120, 50, 150];
+
+      function setup() {
+        createCanvas(150, 200);
+      }
+
+      function draw() {
+        background(255);
+        noFill();
+        stroke(0);
+        beginShape();
+        curveVertex(40,40);
+        curveVertex(40,40);
+        curveVertex(80,60);
+        curveVertex(100,100);
+        curveVertex(60,120);
+        curveVertex(50,150);
+        curveVertex(50,150);
+        endShape();
+
+         for (let i = 0; i < coords.length; i+= 2){
+          ellipse(coords[i], coords[i+1], 10, 10);
+         }
+      }
+      </script>
+
+      <h2>{{#i18n "curves-bezier-curves-title"}}{{/i18n}}</h2>
+
+      <p>
+        {{#i18n "curves-bezier-curves-p1x1"}}{{/i18n}}
+      </p>
+
+      <p>{{#i18n "curves-bezier-curves-p2x1"}}{{/i18n}}</p>
+
+      <!-- iframe of Bezier example -->
+      <iframe src="{{assets}}/learn/curves/bezier/embed.html" width="400" height="400">
+      </iframe>
+
+      <p>
+      {{#i18n "curves-bezier-curves-p3x1"}}{{/i18n}}
+    </p>
+
+      <!-- image of bezier with lines -->
+      <img src="{{assets}}/learn/curves/bezier_with_lines/bezier_with_lines.png" style="width:150px;">
+
+      <h2>{{#i18n "curves-continuous-bezier-curves-title"}}{{/i18n}}</h2>
+
+      <p>
+      {{#i18n "curves-continuous-bezier-curves-p1x1"}}{{/i18n}}
+      </P>
+
+      <p>{{#i18n "curves-continuous-bezier-curves-p2x1"}}{{/i18n}}</P>
+
+      <p>
+      {{#i18n "curves-continuous-bezier-curves-p3x1"}}{{/i18n}}
+      </P>
+
+      <script type="text/p5" data-autoplay data-p5-version="{{ version }}">
+      function setup() {
+        createCanvas(150,200);
+      }
+
+      function draw() {
+        background(255);
+        noFill();
+        stroke(0);
+        beginShape();
+        vertex(30, 70); // first point
+        bezierVertex(25, 25, 100, 50, 50, 100);
+        bezierVertex(50, 140, 75, 140, 120, 120); // if first 2 numbers are changed to 20, 130 it becomes continuous
+        endShape();
+
+        ellipse(25, 25, 5, 5);
+        ellipse(100, 50, 5, 5);
+        ellipse(50, 140, 5, 5);//change to (20, 130, 5, 5) to reflect control point
+        ellipse(75, 140, 5, 5);
+      }
+      </script>
+
+      <h2>{{#i18n "curves-summary-title"}}{{/i18n}}</h2>
+        <p>
+          <ul class="list_view">
+            <li>{{#i18n "curves-summary-li1"}}{{/i18n}}</li>
+            <li>{{#i18n "curves-summary-li2"}}{{/i18n}}</li>
+            <li>{{#i18n "curves-summary-li3"}}{{/i18n}}</li>
+          </ul>
+        </p>
+
+    </main>
+
+    {{> footer}}
+
+  </div> <!-- end column-span -->
+
+  {{> asterisk}}
+
+</div><!-- end id="get-started-page"  -->
